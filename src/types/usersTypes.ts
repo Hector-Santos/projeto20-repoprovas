@@ -1,4 +1,4 @@
-import { users } from "@prisma/client";
+import { User } from "@prisma/client";
 
-export type IUserData = Omit<users, 'id'>;
-
+export type CreateUserData = Omit<User, 'id'> & {confirmPassword: string }
+export type LogUserData = Omit<User, 'id'>

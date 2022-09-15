@@ -1,12 +1,12 @@
-import { findByEmail} from "../repositories/usersRepository.js";
-import { IUserData } from "../types/usersTypes.js";
+import { findByEmail} from "../repositories/usersRepository";
+import { LogUserData } from "../types/usersTypes";
 import bcrypt from 'bcrypt'
 import  jwt  from "jsonwebtoken";
 import dotenv from 'dotenv'
 
 dotenv.config()
 
-export async function login(userData: IUserData){
+export async function login(userData: LogUserData){
 
   const user = await findByEmail(userData.email)
 	if(!user) throw {type: 'not_found', message: 'a user with the provided email could not be found'}
