@@ -3,9 +3,10 @@ import {LogUserData} from "../types/usersTypes"
 
 
 export async function insert(userData: LogUserData) {
-    await prisma.user.create({
+   const user = await prisma.user.create({
         data: userData
     });
+    return user
   }
 
 

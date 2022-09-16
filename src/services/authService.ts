@@ -9,10 +9,10 @@ dotenv.config()
 export async function login(userData: LogUserData){
 
   const user = await findByEmail(userData.email)
-	if(!user) throw {type: 'not_found', message: 'a user with the provided email could not be found'}
+	if(!user) throw {type: 'unauthorized', message: 'invalid user or password'}
 
   const correctPassword = bcrypt.compareSync(userData.password, user.password);
-  if(!correctPassword) throw {type: 'unauthorized', message: 'the provided password is incorrect'}
+  if(!correctPassword) throw {type: 'unauthorized', message: 'invalid user or password'}
 
   const SECRET: string = process.env.TOKEN_SECRET_KEY ?? '';
   const EXPIRES_IN = process.env.TOKEN_EXPIRES_IN;
