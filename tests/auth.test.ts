@@ -8,9 +8,6 @@ beforeEach(async () => {
   await prisma.$executeRaw`TRUNCATE TABLE users`;
 });
 
-afterAll(async () => {
-  await prisma.$disconnect();
-});
 
 describe('Testa POST /signup ', () => {
   it('Deve retornar 201, se cadastrado um user no formato correto', async () => {
@@ -53,7 +50,6 @@ describe('Testa POST /signIn ', () => {
     await supertest(app).post('/signup').send(user);
 
     const result = await supertest(app).post('/signIn').send(logUser)
-    console.log(result.body.text)
 
     expect(result.status).toBe(200)
     
